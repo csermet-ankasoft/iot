@@ -5,6 +5,8 @@ from lib_nrf24 import NRF24
 
 pipes = [[0xE0, 0xE0, 0xF1, 0xF1, 0xE0], [0xF1, 0xF1, 0xF0, 0xF0, 0xE0]]
 
+gpiod = gpiod.Chip("gpiochip4")
+
 radio = NRF24(gpiod, spidev.SpiDev())
 radio.begin(0, 17)
 
