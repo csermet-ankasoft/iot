@@ -1,13 +1,16 @@
 import gpiod
 import time     
 import spidev
-from lib_nrf24 import NRF24
+from nrf24l01 import NRF24L01
+from machine import Pin, SPI
 
-pipes = [[0xE0, 0xE0, 0xF1, 0xF1, 0xE0], [0xF1, 0xF1, 0xF0, 0xF0, 0xE0]]
+pipes = (b'\xe1\xf0\xf0\xf0\xf0', b'\xd2\xf0\xf0\xf0\xf0')
 
-chip = gpiod.Chip("gpiochip4")
+spi = SPI(0, sck=Pin(6), mosi=Pin(7), miso=Pin(4))
+csn = Pin(14, mode=Pin.OUT, value=1)
+ce = Pin(17, mode=Pin.OUT, value=0)
+radio = NRF24L01(spi, csn, ce, channel=100, payload_size=32)
 
-radio = NRF24(gpiod, spidev.SpiDev())
 radio.begin(0, 17)
 
 radio.setPayloadSize(32)
