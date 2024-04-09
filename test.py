@@ -3,6 +3,8 @@ import time
 import spidev
 from nrf24 import NRF24
 from machine import Pin, SPI
+from digitalio import DigitalInOut, Direction, Pull
+
 
 pipes = (b'\xe1\xf0\xf0\xf0\xf0', b'\xd2\xf0\xf0\xf0\xf0')
 
