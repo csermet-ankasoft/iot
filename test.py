@@ -1,4 +1,4 @@
-import bluetooth
+import bluetooth, subprocess
 
 def receiveMessages():
   server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
@@ -17,11 +17,15 @@ def receiveMessages():
   server_sock.close()
   
 def sendMessageTo(targetBluetoothMacAddress):
-  port = 1
-  sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-  sock.connect((targetBluetoothMacAddress, port))
-  sock.send("hello!!")
-  sock.close()
+    # kill any "bluetooth-agent" process that is already running
+    subprocess.call("kill -9 `pidof bluetooth-agent`",shell=True)
+    # Start a new "bluetooth-agent" process where XXXX is the passkey
+    subprocess.call("bluetooth-agent " + "1863" + " &",shell=True)
+    port = 1
+    sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+    sock.connect((targetBluetoothMacAddress, port))
+    sock.send("hello!!")
+    sock.close()
   
 def lookUpNearbyBluetoothDevices():
   nearby_devices = bluetooth.discover_devices()
