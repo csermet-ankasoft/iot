@@ -2,9 +2,9 @@ import RPi.GPIO as GPIO
 import time
 
 # Constants
-ENA_PIN = 25  # GPIO pin connected to the EN1 pin L298N
-IN1_PIN = 8  # GPIO pin connected to the IN1 pin L298N
-IN2_PIN = 7  # GPIO pin connected to the IN2 pin L298N
+ENA_PIN = 16  # GPIO pin connected to the EN1 pin L298N
+IN1_PIN = 20  # GPIO pin connected to the IN1 pin L298N
+IN2_PIN = 21  # GPIO pin connected to the IN2 pin L298N
 
 # Setup
 GPIO.setmode(GPIO.BCM)
@@ -13,7 +13,7 @@ GPIO.setup(IN1_PIN, GPIO.OUT)
 GPIO.setup(IN2_PIN, GPIO.OUT)
 
 # Create PWM object
-pwm = GPIO.PWM(ENA_PIN, 100)  # 100 Hz frequency
+pwm = GPIO.PWM(ENA_PIN, 50)  # 100 Hz frequency
 
 # Main loop
 try:
@@ -21,11 +21,13 @@ try:
         # Motor A spins clockwise
         GPIO.output(IN1_PIN, GPIO.HIGH)
         GPIO.output(IN2_PIN, GPIO.LOW)
+        print("start")
 
         # Increase speed gradually
-        for speed in range(0, 101):
+        for speed in range(0, 151):
             pwm.ChangeDutyCycle(speed)
             time.sleep(0.01)
+            print(speed)
 
         time.sleep(1)  # Rotate at maximum speed for 1 second in clockwise direction
 
