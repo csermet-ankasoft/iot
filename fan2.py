@@ -20,3 +20,4 @@ while True:
     GPIO.output(IN1,GPIO.HIGH)
     GPIO.output(IN2,GPIO.LOW)
     p.ChangeDutyCycle(100)
+    print("start")
