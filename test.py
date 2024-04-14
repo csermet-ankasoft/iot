@@ -6,7 +6,7 @@ sock.send("send")
 sock.close()
 
 server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-
+server_sock.connect(("00:21:09:00:21:87", 1))
 server_sock.bind(("00:21:09:00:21:87",1))
 server_sock.listen(1)
 
