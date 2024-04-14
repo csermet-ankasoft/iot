@@ -7,7 +7,7 @@ sock.close()
 
 server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
-server_sock.bind(("00:21:09:00:21:87",port))
+server_sock.bind(("00:21:09:00:21:87",1))
 server_sock.listen(1)
 
 client_sock,address = server_sock.accept()
