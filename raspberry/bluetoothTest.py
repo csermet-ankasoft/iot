@@ -5,7 +5,7 @@ bluetooth = serial.Serial("/dev/rfcomm1", baudrate=9600)
 
 while True:
     print("DIGITAL LOGIC -- > SENDING...")
-    bluetooth.write(b'X\n')
+    bluetooth.write(b'send')
     print("Writed")
     recieve = bluetooth.readline()
     print("recieved")
