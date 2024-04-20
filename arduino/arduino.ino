@@ -30,7 +30,7 @@ String readString;
 void loop()
 {
   delay(10);
-  BTserial.print("test");
+  
   while (BTserial.available())
   {
     delay(3);  
@@ -38,23 +38,25 @@ void loop()
     readString += c;
   }
   readString.trim();
+
   if (readString.length() >0) {
     Serial.println(readString);
     if (readString == "send"){
       hum = dht.readHumidity();
       temp= dht.readTemperature();
-      ppm= analogRead(AOUTpin);  // ppm değerini Analog pinden oku
+      ppm= analogRead(AOUTpin); 
+
       BTserial.print("NEM: ");
       BTserial.print(hum);
       BTserial.print("%, Sıcaklık: ");
       BTserial.print(temp);
       BTserial.print(" C° ");
       BTserial.print(" Hava kirliliği: ");  
-      BTserial.print(ppm);  //Hava kirliliği miktarını yaz
+      BTserial.print(ppm); 
       BTserial.print("ppm.");
-      BTserial.print("end");
+      BTserial.println("end");
     }
-    readString="";
+    readString = "";
   } 
 
 }
