@@ -6,7 +6,7 @@ port = serial.Serial("/dev/rfcomm1", baudrate=9600) # reading and writing data f
 
 while True:
     print("DIGITAL LOGIC -- > SENDING...")
-    port.write(3)
+    port.write("send")
     rcv = port.readline()
     if rcv:
         print(rcv)
