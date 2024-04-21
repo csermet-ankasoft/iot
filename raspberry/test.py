@@ -1,23 +1,19 @@
-import bluetooth
+import board
+import time
+import busio
+import adafruit_ads1x15.ads1115 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
 
-sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-sock.connect(("00:21:09:00:21:87", 1))
-sock.send("send")
-sock.close()
+# Initialize the I2C interface
+i2c = busio.I2C(board.SCL, board.SDA)
 
-server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-size = 1024
-server_sock.bind(("00:21:09:00:21:87",9200))
-server_sock.listen(1)
+# Create an ADS1115 object
+ads = ADS.ADS1115(i2c)
 
-try:
-	client, clientInfo = server_sock.accept()
-	while 1:
-		data = client.recv(size)
-		if data:
-			print(data)
-			client.send(data) # Echo back to client
-except:	
-	print("Closing socket")
-	client.close()
-	server_sock.close()
+# Define the analog input channel
+channel = AnalogIn(ads, ADS.P0)
+
+# Loop to read the analog input continuously
+while True:
+    print("Analog Value: ", channel.value, "Voltage: ", channel.voltage)
+    time.sleep(0.2)

@@ -46,15 +46,15 @@ void loop()
       temp= dht.readTemperature();
       ppm= analogRead(AOUTpin); 
 
-      BTserial.print("NEM: ");
+      BTserial.print("Humidity: ");
       BTserial.print(hum);
-      BTserial.print("%, Sıcaklık: ");
+      BTserial.print("%, Temperature : ");
       BTserial.print(temp);
       BTserial.print(" C° ");
-      BTserial.print(" Hava kirliliği: ");  
+      BTserial.print(" Air Quality: ");  
       BTserial.print(ppm); 
       BTserial.print("ppm.");
-      BTserial.println("end");
+      BTserial.println("end;");
     }
     readString = "";
   } 
