@@ -15,5 +15,5 @@ channel = AnalogIn(ads, ADS.P0)
 
 # Loop to read the analog input continuously
 while True:
-    print("Analog Value: ", (round(channel.value/32.767)), "Voltage: ", channel.voltage)
+    print("Analog Value: ", round(channel.value/32.767)
     time.sleep(0.2)
