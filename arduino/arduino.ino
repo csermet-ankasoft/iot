@@ -58,7 +58,7 @@ void loop()
     }
     readString = "";
   } 
-  ppm= analogRead(AOUTpin); 
+  ppm= (analogRead(AOUTpin)*0.0977); 
   BTserial.print(ppm); 
   BTserial.println("ppm.");
   delay(200);
