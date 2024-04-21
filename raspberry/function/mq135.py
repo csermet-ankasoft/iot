@@ -6,14 +6,11 @@ from adafruit_ads1x15.analog_in import AnalogIn
 
 # Initialize the I2C interface
 i2c = busio.I2C(board.SCL, board.SDA)
-
 # Create an ADS1115 object
 ads = ADS.ADS1115(i2c)
-
 # Define the analog input channel
 channel = AnalogIn(ads, ADS.P0)
 
-# Loop to read the analog input continuously
 while True:
     print("Analog Value: ", round(channel.value/32.767)
     time.sleep(0.2)
