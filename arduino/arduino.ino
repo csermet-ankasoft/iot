@@ -3,11 +3,11 @@
 #include <DHT.h>
 
 //Constants
-#define DHTPIN 2     // what pin we're connected to
-#define DHTTYPE DHT22   // DHT 22  (AM2302)
-#define AOUTpin A4   // DHT 22  (AM2302)
-#define RX 4   // DHT 22  (AM2302)
-#define TX 3   // DHT 22  (AM2302)
+#define DHTPIN 2 
+#define DHTTYPE DHT22  
+#define AOUTpin A1   // MQT-135
+#define RX 4   
+#define TX 3   
 
 //Variables
 float hum;  //Stores humidity value
@@ -29,7 +29,7 @@ void setup()
 String readString;
 void loop()
 {
-  delay(10);
+  delay(200);
   
   while (BTserial.available())
   {
@@ -58,5 +58,8 @@ void loop()
     }
     readString = "";
   } 
-
+  ppm= analogRead(AOUTpin); 
+  BTserial.print(ppm*10); 
+  BTserial.println("ppm.");
+  delay(200);
 }
