@@ -1,32 +1,30 @@
-import os, time
+import influxdbToken
 from influxdb_client_3 import InfluxDBClient3, Point
 
-token = os.environ.get("INFLUXDB_TOKEN")
-org = "Railgun"
-host = "https://us-east-1-1.aws.cloud2.influxdata.com"
+def writeData(temp, humidity, air_quality, location):
+  client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
+  database = influxdbToken.database
 
-client = InfluxDBClient3(host=host, token=token, org=org)
+  data = (
+    Point("iot")
+    .tag("location", location)
+    .field("temp", temp)
+    .field("humidity", humidity)
+    .field("air_quality", air_quality)
+  )
+  client.write(database=database, record=data)
 
-database="IOT"
+  print("Influxdb Write Completed.")
 
-inside = (
-  Point("my_test_point")
-  .tag("location", "Inside")
-  .field("temp", 33)
-  .field("humidity", 87)
-  .field("air_quality", 95)
-)
-client.write(database=database, record=inside)
-time.sleep(1) # separate points by 1 second
+def status():
+  client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
+  database = influxdbToken.database
 
-outside = (
-  Point("my_test_point")
-  .tag("location", "Outside")
-  .field("temp", 25)
-  .field("humidity", 37)
-  .field("air_quality", 195)
-)
-client.write(database=database, record=outside)
-time.sleep(1) # separate points by 1 second
+  query = "SELECT * FROM 'iot' WHERE time >= now() - interval '1 hours'"
 
-print("Completed.")
+  # Execute the query
+  table = client.query(query=query, database=database, language='sql') )
+
+  # Convert to dataframe
+  df = table.to_pandas().sort_values(by="time")
+  print(df)

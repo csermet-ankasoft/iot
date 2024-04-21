@@ -16,3 +16,6 @@ def get_temperature():
 
 def get_airQuality():
     get_bluetooth(b'getAirQuality')
+
+def status():
+    get_bluetooth(b'status')
