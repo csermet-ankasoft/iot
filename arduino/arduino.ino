@@ -44,7 +44,7 @@ void loop()
     if (readString == "status"){
       hum = dht.readHumidity();
       temp = dht.readTemperature();
-      airQuality = (analogRead(AOUTpin)*1.25); 
+      airQuality = (analogRead(AOUTpin) * 1.25); 
 
       BTserial.print("Humidity: ");
       BTserial.print(hum);
@@ -59,13 +59,13 @@ void loop()
     else if (readString == "getHumidity"){
       delay(200);
       hum = dht.readHumidity();
-      BTserial.print(hum);
+      BTserial.print(hum, 1);
       BTserial.print(";");
     }
     else if (readString == "getTemperature"){
       delay(200);
       temp = dht.readTemperature();
-      BTserial.print(temp);
+      BTserial.print(temp, 1);
       BTserial.print(";");
     }
     else if (readString == "getAirQuality"){
@@ -75,9 +75,5 @@ void loop()
       BTserial.print(";");
     }
     readString = "";
-  } 
-  airQuality = (analogRead(AOUTpin)*1.25); 
-  //BTserial.print(ppm); 
-  //BTserial.println("ppm.");
-  delay(200);
+  }
 }
