@@ -6,7 +6,7 @@ import function.mq135 as mq135
 
 print("Init Check Started.\n")
 
-bluetooth.status()
+bluetooth.get_airQuality()
 bluetooth.status()
 dht22.status()
 mq135.status()
