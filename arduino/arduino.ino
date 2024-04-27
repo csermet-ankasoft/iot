@@ -57,14 +57,17 @@ void loop()
       BTserial.println("end;");
     }
     else if (readString == "getHumidity"){
+      delay(200);
       hum = dht.readHumidity();
       BTserial.print(hum);
     }
     else if (readString == "getTemperature"){
+      delay(200);
       temp= dht.readTemperature();
       BTserial.print(temp);
     }
     else if (readString == "getAirQuality"){
+      delay(200);
       airQuality = (analogRead(AOUTpin)*1.25); 
       BTserial.print(airQuality);
     }
