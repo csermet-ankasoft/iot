@@ -32,5 +32,5 @@ while True:
     print("Raspberry Temperature: ", raspberry_temp)
     print("Raspberry Humidity: ", raspberry_humidity)
     #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
-    print("Scan Completed \n")
+    print("\n Scan Completed \n")
     time.sleep(2)
