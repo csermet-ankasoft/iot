@@ -18,7 +18,7 @@ time.sleep(2)
 print("Starting...\n")
 
 while True:
-    print("Scanning...")
+    print("Scanning...\n")
     arduino_airQuality = bluetooth.get_airQuality()
     arduino_temp = bluetooth.get_temperature()
     arduino_humidity = bluetooth.get_humidty()
@@ -32,5 +32,5 @@ while True:
     print("Raspberry Temperature: ", raspberry_temp)
     print("Raspberry Humidity: ", raspberry_humidity)
     #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
-    print("\n Scan Completed \n")
+    print("\nScan Completed \n")
     time.sleep(2)
