@@ -13,6 +13,7 @@ mq135.status()
 
 print("Check Completed.")
 
+time.sleep(10)
 
 while True:
     arduino_airQuality = bluetooth.get_airQuality()

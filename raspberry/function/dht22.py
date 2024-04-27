@@ -30,6 +30,6 @@ def status():
     try:
         get_temperature()
         get_humidity()
-        print("Temp:" + str(get_temperature()) + " Humidity:" + str(get_humidity()))
+        print("\n")
     except Exception as error:
         raise error

@@ -19,3 +19,4 @@ def get_airQuality():
 
 def status():
     __get_bluetooth(b'status')
+    print("\n")
