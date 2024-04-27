@@ -36,7 +36,7 @@ while True:
         print("Raspberry Humidity: ", raspberry_humidity)
         #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
 
-        lcd.writeLCD("T: " + str(raspberry_temp) + "H: " + str(raspberry_humidity) + "A: " + str(raspberry_airQuality), "T: " + str(arduino_temp) + "H: " + str(arduino_humidity) + "A: " + str(arduino_airQuality))
+        lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " A:" + str(raspberry_airQuality), " T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " A:" + str(arduino_airQuality))
 
         print("\nScan Completed \n")
         time.sleep(2)
