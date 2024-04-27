@@ -28,7 +28,7 @@ while True:
     print("Arduino Air Quality: ", arduino_airQuality)
     print("Arduino Temperature: ", arduino_temp)
     print("Arduino Humidity: ", arduino_humidity)
-    print("Raspberry Air Quality: ", raspberry_airQuality)
+    print("\nRaspberry Air Quality: ", raspberry_airQuality)
     print("Raspberry Temperature: ", raspberry_temp)
     print("Raspberry Humidity: ", raspberry_humidity)
     #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
