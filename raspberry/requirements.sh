@@ -1,5 +1,5 @@
 # Bluetooth
-sudo bluetootchtl
+sudo bluetoothctl
 - scan on
 - pair XX:XX:XX:XX:XX:XX
 - trust XX:XX:XX:XX:XX:XX

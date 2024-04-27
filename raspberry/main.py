@@ -8,7 +8,7 @@ print("Init Check Started.")
 bluetooth.status()
 dht22.status()
 mq135.status()
-influxdata.status()
+#influxdata.status()
 
 print("Check Completed.")
 
