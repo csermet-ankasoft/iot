@@ -16,7 +16,7 @@ def get_temperature():
     return __get_bluetooth(b'getTemperature')
 
 def get_airQuality():
-    return __get_bluetooth(b'getAirQuality')
+    return __get_bluetooth(b'airQuality')
 
 def status():
     __get_bluetooth(b'status')
