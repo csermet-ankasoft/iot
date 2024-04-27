@@ -9,7 +9,6 @@ ads = ADS.ADS1115(i2c, address=0x48)
 def getAirQuality():
     try:
         airQuality = AnalogIn(ads, ADS.P0)
-        print("Air Quality: ", airQuality.value)
         airQuality = round(airQuality.value/32.767)
     except RuntimeError as error:
         raise error.args[0]
