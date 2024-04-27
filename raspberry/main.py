@@ -8,9 +8,9 @@ import function.screen as screen
 print("Init Check Started.\n")
 
 bluetooth.status()
+screen.status()
 dht22.status()
 mq135.status()
-screen.status()
 #influxdata.status()
 
 print("Check Completed.\n")
