@@ -7,7 +7,7 @@ def __get_bluetooth(text):
     #print("BluetoothSend: ", text.decode('UTF-8'))
     recieve = arduinoBluetooth.read_until(b';').decode('UTF-8')
     #print("BluetoothRecieved: ", recieve)
-    return recieve
+    return recieve[:-1]
 
 def get_humidty():
     return __get_bluetooth(b'getHumidity')
