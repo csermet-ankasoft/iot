@@ -64,7 +64,7 @@ void loop()
     }
     else if (readString == "getTemperature"){
       delay(200);
-      temp= dht.readTemperature();
+      temp = dht.readTemperature();
       BTserial.print(temp);
       BTserial.print(";");
     }
