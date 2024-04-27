@@ -12,7 +12,7 @@
 //Variables
 float hum;  //Stores humidity value
 float temp; //Stores temperature value
-int ppm;
+int airQuality;
 
 //Define
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
@@ -43,8 +43,8 @@ void loop()
     Serial.println(readString);
     if (readString == "send"){
       hum = dht.readHumidity();
-      temp= dht.readTemperature();
-      ppm= analogRead(AOUTpin); 
+      temp = dht.readTemperature();
+      airQuality = analogRead(AOUTpin); 
 
       BTserial.print("Humidity: ");
       BTserial.print(hum);
@@ -52,13 +52,25 @@ void loop()
       BTserial.print(temp);
       BTserial.print(" C° ");
       BTserial.print(" Air Quality: ");  
-      BTserial.print(ppm); 
+      BTserial.print(airQuality); 
       BTserial.print("ppm.");
       BTserial.println("end;");
     }
+    else if (readString == "getHumidity"){
+      hum = dht.readHumidity();
+      BTserial.print(hum);
+    }
+    else if (readString == "getTemperature"){
+      temp= dht.readTemperature();
+      BTserial.print(temp);
+    }
+    else if (readString == "getAirQuality"){
+      airQuality = analogRead(AOUTpin); 
+      BTserial.print(airQuality);
+    }
     readString = "";
   } 
-  ppm= (analogRead(AOUTpin)*1.25); 
+  airQuality = (analogRead(AOUTpin)*1.25); 
   //BTserial.print(ppm); 
   //BTserial.println("ppm.");
   delay(200);

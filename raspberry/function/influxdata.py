@@ -23,7 +23,7 @@ def status():
   query = "SELECT * FROM 'iot' WHERE time >= now() - interval '1 hours'"
 
   # Execute the query
-  table = client.query(query=query, database=database, language='sql') )
+  table = client.query(query=query, database=database, language='sql')
 
   # Convert to dataframe
   df = table.to_pandas().sort_values(by="time")
