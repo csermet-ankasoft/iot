@@ -13,7 +13,7 @@ mq135.status()
 
 print("Check Completed.\n")
 
-time.sleep(5)
+time.sleep(2)
 
 print("Starting...\n")
 

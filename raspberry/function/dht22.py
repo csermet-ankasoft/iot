@@ -6,7 +6,6 @@ dhtDevice = adafruit_dht.DHT22(board.D18)
 def get_temperature():
     try:
         temp = dhtDevice.temperature
-        print("Temperature: {:.1f} C".format(temp))
     except RuntimeError as error:
         raise error.args[0]
     except Exception as error:
@@ -18,7 +17,6 @@ def get_temperature():
 def get_humidity():
     try:
         humidity = dhtDevice.humidity
-        print("Humidity: {:.1f}%".format(humidity))
     except RuntimeError as error:
         raise error.args[0]
     except Exception as error:
@@ -28,8 +26,10 @@ def get_humidity():
 
 def status():
     try:
-        get_temperature()
-        get_humidity()
+        temp = get_temperature()
+        humidity = get_humidity()
+        print("Temperature: {:.1f} C".format(temp))
+        print("Humidity: {:.1f}%".format(humidity))
         print("")
     except Exception as error:
         raise error
