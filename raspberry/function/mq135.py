@@ -18,6 +18,6 @@ def getAirQuality():
 def status():
     try:
         getAirQuality()
-        print("\n")
+        print("")
     except Exception as error:
         raise error

@@ -13,9 +13,12 @@ mq135.status()
 
 print("Check Completed.")
 
-time.sleep(10)
+time.sleep(5)
+
+print("Starting...")
 
 while True:
+    print("Scanning...")
     arduino_airQuality = bluetooth.get_airQuality()
     arduino_temp = bluetooth.get_temperature()
     arduino_humidity = bluetooth.get_humidty()
@@ -29,4 +32,5 @@ while True:
     print("Raspberry Temperature: ", raspberry_temp)
     print("Raspberry Humidity: ", raspberry_humidity)
     #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
+    print("Scan Completed \n")
     time.sleep(10)
