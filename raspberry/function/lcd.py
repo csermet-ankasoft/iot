@@ -4,8 +4,8 @@ from time import sleep
 lcd = LCD()
 
 def writeLCD(text1, text2):
-    lcd.text('Hello World!', 1)
-    lcd.text('Raspberry Pi', 2)
+    lcd.text(text1, 1)
+    lcd.text(text2, 2)
 
 def clearLCD():
     lcd.clear()
