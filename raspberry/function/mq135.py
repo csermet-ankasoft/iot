@@ -5,10 +5,10 @@ from adafruit_ads1x15.analog_in import AnalogIn
 
 i2c = busio.I2C(board.SCL, board.SDA)
 ads = ADS.ADS1115(i2c)
-airQuality = AnalogIn(ads, ADS.P0)
 
 def getAirQuality():
     try:
+        airQuality = AnalogIn(ads, ADS.P0)
         airQuality = round(airQuality.value/32.767)
         print("Air Quality: ", airQuality)
     except RuntimeError as error:
