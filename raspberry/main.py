@@ -39,6 +39,6 @@ while True:
         lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " A:" + str(raspberry_airQuality) + " O", "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " A:" + str(arduino_airQuality) + " K")
 
         print("\nScan Completed \n")
-        time.sleep(2)
+        time.sleep(1)
     except Exception as error:
         lcd.writeLCD("Error", str(error))
