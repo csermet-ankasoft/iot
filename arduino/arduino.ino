@@ -60,16 +60,19 @@ void loop()
       delay(200);
       hum = dht.readHumidity();
       BTserial.print(hum);
+      BTserial.print(";");
     }
     else if (readString == "getTemperature"){
       delay(200);
       temp= dht.readTemperature();
       BTserial.print(temp);
+      BTserial.print(";");
     }
     else if (readString == "getAirQuality"){
       delay(200);
       airQuality = (analogRead(AOUTpin)*1.25); 
       BTserial.print(airQuality);
+      BTserial.print(";");
     }
     readString = "";
   } 
