@@ -41,7 +41,7 @@ void loop()
 
   if (readString.length() >0) {
     Serial.println(readString);
-    if (readString == "send"){
+    if (readString == "status"){
       hum = dht.readHumidity();
       temp = dht.readTemperature();
       airQuality = analogRead(AOUTpin); 

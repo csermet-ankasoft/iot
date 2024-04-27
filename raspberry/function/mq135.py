@@ -10,7 +10,7 @@ airQuality = AnalogIn(ads, ADS.P0)
 def getAirQuality():
     try:
         airQuality = round(airQuality.value/32.767)
-        print("Air Quality: ", )
+        print("Air Quality: ", airQuality)
     except RuntimeError as error:
         raise error.args[0]
     return airQuality
