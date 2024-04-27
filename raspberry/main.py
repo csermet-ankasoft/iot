@@ -3,7 +3,7 @@ import function.bluetooth as bluetooth
 import function.dht22 as dht22
 import function.influxdata as influxdata
 import function.mq135 as mq135
-import iot.raspberry.function.lcd as lcd
+import function.lcd as lcd
 
 print("Init Check Started.\n")
 
