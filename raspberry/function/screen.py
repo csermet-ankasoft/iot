@@ -1,6 +1,14 @@
-from RPLCD.i2c import CharLCD
+from rpi_lcd import LCD
+from time import sleep
 
-lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=16, rows=2, dotsize=8)
-lcd.clear()
+lcd = LCD()
 
-lcd.write_string('Hello, World!')
+def writeLCD(text1, text2):
+    lcd.text('Hello World!', 1)
+    lcd.text('Raspberry Pi', 2)
+
+def clearLCD():
+    lcd.clear()
+
+def status():
+    lcd.text('LCD Status: OK', 1)
