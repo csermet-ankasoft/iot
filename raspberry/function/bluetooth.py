@@ -4,8 +4,8 @@ arduinoBluetooth = serial.Serial("/dev/rfcomm1", baudrate=9600)
 
 def __get_bluetooth(text):
     arduinoBluetooth.write(text)
-    print("BluetoothSend: ", text)
-    recieve = arduinoBluetooth.readline()
+    print("BluetoothSend: ", text.decode('UTF-8'))
+    recieve = arduinoBluetooth.readline().decode('UTF-8')
     print("BluetoothRecieved: ", recieve)
     return recieve
 
