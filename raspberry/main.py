@@ -28,7 +28,7 @@ while True:
         raspberry_airQuality = mq135.getAirQuality()
         raspberry_temp = dht22.get_temperature()
         raspberry_humidity = dht22.get_humidity()
-        print("Arduino Air Quality: ", arduino_airQuality)
+        print("\nArduino Air Quality: ", arduino_airQuality)
         print("Arduino Temperature: ", arduino_temp)
         print("Arduino Humidity: ", arduino_humidity)
         print("\nRaspberry Air Quality: ", raspberry_airQuality)
