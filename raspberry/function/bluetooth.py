@@ -1,6 +1,6 @@
 import serial
 
-arduinoBluetooth = serial.Serial("/dev/rfcomm1", baudrate=9600)
+arduinoBluetooth = serial.Serial("/dev/rfcomm1", baudrate=9600, timeout=2)
 
 def __get_bluetooth(text):
     arduinoBluetooth.write(text)
