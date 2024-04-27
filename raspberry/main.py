@@ -3,12 +3,12 @@ import function.bluetooth as bluetooth
 import function.dht22 as dht22
 import function.influxdata as influxdata
 import function.mq135 as mq135
-import function.screen as screen
+import iot.raspberry.function.lcd as lcd
 
 print("Init Check Started.\n")
 
 bluetooth.status()
-screen.status()
+lcd.status()
 dht22.status()
 mq135.status()
 #influxdata.status()
@@ -36,9 +36,9 @@ while True:
         print("Raspberry Humidity: ", raspberry_humidity)
         #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
 
-        screen.writeLCD("T: " + str(raspberry_temp) + "H: " + str(raspberry_humidity) + "A: " + str(raspberry_airQuality), "T: " + str(arduino_temp) + "H: " + str(arduino_humidity) + "A: " + str(arduino_airQuality))
+        lcd.writeLCD("T: " + str(raspberry_temp) + "H: " + str(raspberry_humidity) + "A: " + str(raspberry_airQuality), "T: " + str(arduino_temp) + "H: " + str(arduino_humidity) + "A: " + str(arduino_airQuality))
 
         print("\nScan Completed \n")
         time.sleep(2)
     except Exception as error:
-        screen.writeLCD("Error", str(error))
+        lcd.writeLCD("Error", str(error))
