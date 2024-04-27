@@ -70,7 +70,7 @@ void loop()
     }
     else if (readString == "getAirQuality"){
       delay(200);
-      airQuality = (analogRead(AOUTpin)*1.25); 
+      airQuality = (analogRead(AOUTpin)*1,25); 
       BTserial.print(airQuality);
       BTserial.print(";");
     }
