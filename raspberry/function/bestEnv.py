@@ -1,4 +1,5 @@
 def temp(temp):
+    temp = float(temp)
     if temp > 21.0 and temp < 25.0:
         return 5
     elif temp > 20.0 and temp < 21.0 or temp > 25.0 and temp < 26.0:
@@ -13,6 +14,7 @@ def temp(temp):
         return 0
     
 def humidity(humidity):
+    humidity = float(humidity)
     if humidity > 40 and humidity < 60:
         return 5
     elif humidity > 35 and humidity < 40 or humidity > 60.0 and humidity < 65:
@@ -27,6 +29,7 @@ def humidity(humidity):
         return 0
     
 def airQuality(airQuality):
+    airQuality = int(airQuality)
     if airQuality > 0 and airQuality < 10:
         return 5
     elif airQuality > 10 and airQuality < 15:
