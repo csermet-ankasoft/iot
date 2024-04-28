@@ -15,10 +15,10 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, ardui
     .field("score", float(arduino_score)),
     Point("withLocation")
     .tag("location", "Raspberry")
-    .field("temperature", raspberry_temp)
-    .field("humidity", raspberry_humidity)
-    .field("air_quality", raspberry_air_quality)
-    .field("score", raspberry_score)
+    .field("temperature", float(raspberry_temp))
+    .field("humidity", int(raspberry_humidity))
+    .field("air_quality", float(raspberry_air_quality))
+    .field("score", float(raspberry_score))
   )
   client.write(database=database, record=data)
 
@@ -33,9 +33,9 @@ def writeWithoutLocationData(arduino_temp, arduino_humidity, arduino_air_quality
     .field("arduino_air_quality", int(arduino_air_quality))
     .field("arduino_score", float(arduino_score))
     .field("raspberry_temp", raspberry_temp)
-    .field("raspberry_humidity", raspberry_humidity)
-    .field("raspberry_air_quality", raspberry_air_quality)
-    .field("raspberry_score", raspberry_score)
+    .field("raspberry_humidity", float(raspberry_humidity))
+    .field("raspberry_air_quality", int(raspberry_air_quality))
+    .field("raspberry_score", float(raspberry_score))
   )
   client.write(database=database, record=data)
 
