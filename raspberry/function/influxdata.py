@@ -8,15 +8,15 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, raspb
 
   data = (
     Point("iot1")
-    .tag("location", "Arduino")
-    .field("temp", arduino_temp)
-    .field("humidity", arduino_humidity)
-    .field("air_quality", arduino_air_quality),
-    Point("iot1")
     .tag("location", "Raspberry")
     .field("temp", raspberry_temp)
     .field("humidity", raspberry_humidity)
-    .field("air_quality", raspberry_air_quality)
+    .field("air_quality", raspberry_air_quality),
+    Point("iot1")
+    .tag("location", "Arduino")
+    .field("temp", arduino_temp)
+    .field("humidity", arduino_humidity)
+    .field("air_quality", arduino_air_quality)
   )
   client.write(database=database, record=data)
 
