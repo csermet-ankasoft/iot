@@ -28,7 +28,7 @@ def writeWithoutLocationData(arduino_temp, arduino_humidity, arduino_air_quality
     Point("iot2")
     .field("arduino_temp", arduino_temp)
     .field("arduino_humidity", arduino_humidity)
-    .field("arduino_air_quality", arduino_air_quality)
+    .field("arduino_air_quality", int(arduino_air_quality))
     .field("raspberry_temp", raspberry_temp)
     .field("raspberry_humidity", raspberry_humidity)
     .field("raspberry_air_quality", raspberry_air_quality)
