@@ -8,6 +8,11 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, raspb
 
   data = (
     Point("iot1")
+    .tag("location", "Arduino")
+    .field("temperature", float(arduino_temp))
+    .field("humidity",  float(arduino_humidity))
+    .field("air_quality", int(arduino_air_quality)),
+    Point("iot1")
     .tag("location", "Raspberry")
     .field("temperature", raspberry_temp)
     .field("humidity", raspberry_humidity)
@@ -21,8 +26,8 @@ def writeWithoutLocationData(arduino_temp, arduino_humidity, arduino_air_quality
 
   data = (
     Point("iot2")
-    .field("arduino_temp", arduino_temp)
-    .field("arduino_humidity", arduino_humidity)
+    .field("arduino_temp", float(arduino_temp))
+    .field("arduino_humidity", int(arduino_humidity))
     .field("arduino_air_quality", int(arduino_air_quality))
     .field("raspberry_temp", raspberry_temp)
     .field("raspberry_humidity", raspberry_humidity)
