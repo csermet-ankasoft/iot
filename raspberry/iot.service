@@ -1,0 +1,7 @@
+[Unit]
+Description=IOT Service
+
+[Service]
+ExecStart=/usr/bin/python3 /home/caner/Project/iot/raspberry/main.py
+Restart=always
+RestartSec=60

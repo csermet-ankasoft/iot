@@ -5,9 +5,10 @@ import function.influxdata as influxdata
 import function.mq135 as mq135
 import function.lcd as lcd
 import function.bestEnv as bestEnv
+import logging as log
 
 def Init():
-    print("Init Check Started.\n")
+    logger.info("Init Check Started.\n")
 
     bluetooth.status()
     lcd.status()
@@ -15,7 +16,7 @@ def Init():
     mq135.status()
     influxdata.status()
 
-    print("Check Completed.\n")
+    logger.info("Check Completed.\n")
     time.sleep(2)
 
 def arduinoEnvScore(arduino_temp, arduino_humidity, raspberry_air_quality):
@@ -31,22 +32,24 @@ def raspberryEnvScore(raspberry_temp, raspberry_humidity, raspberry_air_quality)
     return (tempScore + humidityScore + airQualityScore) / 3
 
 def printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score):
-    print("\nArduino Air Quality: ", arduino_air_quality)
-    print("Arduino Temperature: ", arduino_temp)
-    print("Arduino Humidity: ", arduino_humidity)
-    print("Arduino Score: ", arduino_score)
-    print("Raspberry Air Quality: ", raspberry_air_quality)
-    print("Raspberry Temperature: ", raspberry_temp)
-    print("Raspberry Humidity: ", raspberry_humidity)
-    print("Raspberry Score: ", raspberry_score)
-    print("\nScan Completed \n")
+    logger.info("\nArduino Air Quality: ", arduino_air_quality)
+    logger.info("Arduino Temperature: ", arduino_temp)
+    logger.info("Arduino Humidity: ", arduino_humidity)
+    logger.info("Arduino Score: ", arduino_score)
+    logger.info("Raspberry Air Quality: ", raspberry_air_quality)
+    logger.info("Raspberry Temperature: ", raspberry_temp)
+    logger.info("Raspberry Humidity: ", raspberry_humidity)
+    logger.info("Raspberry Score: ", raspberry_score)
+    logger.info("\nScan Completed \n")
     lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " S:" + str(raspberry_score) + " O", "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " S:" + str(arduino_score) + " K")
 
+log.basicConfig(filename='/Project/iot/raspberry/iot.log', level=log.INFO)
+logger = log.getLogger('iot')
 Init()
-print("Starting...\n")
+logger.info("Starting...\n")
 while True:
     try:
-        print("Scanning...\n")
+        logger.info("Scanning...\n")
         lcd.writeLCD("Scanning", "")
         raspberry_air_quality = bluetooth.get_airQuality()
         arduino_temp = bluetooth.get_temperature()
@@ -59,12 +62,12 @@ while True:
 
         printScannedData(arduino_temp, arduino_humidity, raspberry_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
         time.sleep(36)
-        print("\nWriting to DB...")
+        logger.info("\nWriting to DB...")
         influxdata.writeData(arduino_temp, arduino_humidity, raspberry_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
-        print("DB Write Completed.\n")
+        logger.info("DB Write Completed.\n")
         lcd.writeLCD("DB Write Completed", "")
         time.sleep(10)
     except Exception as error:
         time.sleep(100)
-        print("Error: ", error)
+        logger.info("Error: ", error)
         lcd.writeLCD("Error", str(error))
