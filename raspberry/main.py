@@ -43,7 +43,7 @@ def printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduin
     logger.info("\nScan Completed \n")
     lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " S:" + str(raspberry_score) + " O", "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " S:" + str(arduino_score) + " K")
 
-log.basicConfig(filename='/Project/iot/raspberry/iot.log', level=log.INFO)
+log.basicConfig(filename='/home/caner/Project/iot/raspberry/iot.log', level=log.INFO)
 logger = log.getLogger('iot')
 Init()
 logger.info("Starting...\n")
