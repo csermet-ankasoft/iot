@@ -32,8 +32,8 @@ def raspberryEnvScore(raspberry_temp, raspberry_humidity, raspberry_air_quality)
     return (tempScore + humidityScore + airQualityScore) / 3
 
 def printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score):
-    logger.info("\nArduino Air Quality: " + str(arduino_air_quality))
-    logger.info("Arduino Temperature: "+ str(arduino_temp))
+    # logger.info("\nArduino Air Quality: " + str(arduino_air_quality))
+    # logger.info("Arduino Temperature: "+ str(arduino_temp))
     # logger.info("Arduino Humidity: ", str(arduino_humidity))
     # logger.info("Arduino Score: ", str(arduino_score))
     # logger.info("Raspberry Air Quality: ", str(raspberry_air_quality))
