@@ -11,7 +11,7 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, raspb
     .tag("location", "Raspberry")
     .field("temperature", raspberry_temp)
     .field("humidity", raspberry_humidity)
-    .field("air_quality", raspberry_air_quality)
+    .field("air_quality", int(raspberry_air_quality))
   )
   client.write(database=database, record=data)
 
