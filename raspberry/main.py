@@ -59,9 +59,10 @@ while True:
         logger.info("Writing to DB...")
         influxdata.writeData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
         logger.info("DB Write Completed.\n")
-        lcd.writeLCD("DB Write Completed", "")
         logger.info("Sleeping for 46 seconds.")
-        time.sleep(46)
+        time.sleep(30)
+        lcd.writeLCD("DB Write Completed", "")
+        time.sleep(16)
     except Exception as error:
         logger.info("Error: " + str(error))
         lcd.writeLCD("Error", str(error))
