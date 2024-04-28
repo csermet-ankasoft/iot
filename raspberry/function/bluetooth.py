@@ -4,7 +4,6 @@ arduinoBluetooth = serial.Serial("/dev/rfcomm1", baudrate=9600, timeout=5)
 
 def __get_bluetooth(text):
     arduinoBluetooth.write(text)
-    print("Waiting for Bluetooth " + text.decode('UTF-8') + " response...")
     recieve = arduinoBluetooth.read_until(b';').decode('UTF-8')
     return recieve[:-1]
 
@@ -19,4 +18,3 @@ def get_airQuality():
 
 def status():
     __get_bluetooth(b'status')
-    print("")

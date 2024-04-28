@@ -17,7 +17,5 @@ def getAirQuality():
 def status():
     try:
         airQuality = getAirQuality()
-        print("Air Quality: ", airQuality)
-        print("")
     except Exception as error:
         raise error

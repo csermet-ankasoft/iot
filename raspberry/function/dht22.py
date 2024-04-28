@@ -26,10 +26,7 @@ def get_humidity():
 
 def status():
     try:
-        temp = get_temperature()
-        humidity = get_humidity()
-        print("Temperature: {:.1f} C".format(temp))
-        print("Humidity: {:.1f}%".format(humidity))
-        print("")
+        get_temperature()
+        get_humidity()
     except Exception as error:
         raise error

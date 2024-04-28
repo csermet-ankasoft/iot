@@ -44,7 +44,6 @@ def writeData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score
   writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
   time.sleep(10)
   writeWithoutLocationData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
-  print("Influxdb Write Completed.")
 
 def status():
   client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
@@ -56,5 +55,4 @@ def status():
   table = client.query(query=query, database=database, language='sql')
 
   # Convert to dataframe
-  df = table.to_pandas().sort_values(by="time")
-  print(df)
+  table.to_pandas().sort_values(by="time")
