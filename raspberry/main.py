@@ -70,6 +70,6 @@ while True:
         lcd.writeLCD("DB Write Completed", "")
         time.sleep(10)
     except Exception as error:
-        time.sleep(100)
         logger.info("Error: "+ str(error))
         lcd.writeLCD("Error", str(error))
+        time.sleep(100)
