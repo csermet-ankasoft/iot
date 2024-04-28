@@ -12,7 +12,7 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, raspb
     .field("temperature", float(arduino_temp))
     .field("humidity",  float(arduino_humidity))
     .field("air_quality", int(arduino_air_quality)),
-    Point("iot1")
+    Point("withLocation")
     .tag("location", "Raspberry")
     .field("temperature", raspberry_temp)
     .field("humidity", raspberry_humidity)
