@@ -1,13 +1,13 @@
 def temp(temp):
-    if temp > 22.0 and temp < 24.0:
+    if temp > 21.0 and temp < 25.0:
         return 5
-    elif temp > 21.0 and temp < 22.0 or temp > 24.0 and temp < 25.0:
-        return 4
     elif temp > 20.0 and temp < 21.0 or temp > 25.0 and temp < 26.0:
+        return 4
+    elif temp > 18.0 and temp < 20.0 or temp > 26.0 and temp < 28.0:
         return 3
-    elif temp > 19.0 and temp < 20.0 or temp > 26.0 and temp < 27.0:
+    elif temp > 14.0 and temp < 18.0 or temp > 28.0 and temp < 32.0:
         return 2
-    elif temp > 18.0 and temp < 19.0 or temp > 27.0 and temp < 28.0:
+    elif temp > 8.0 and temp < 14.0 or temp > 32.0 and temp < 38.0:
         return 1
     else:
         return 0
