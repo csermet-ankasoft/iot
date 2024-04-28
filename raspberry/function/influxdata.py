@@ -50,7 +50,7 @@ def status():
   client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
   database = influxdbToken.database
 
-  query = "SELECT * FROM 'iot' WHERE time >= now() - interval '1 hours'"
+  query = "SELECT * FROM 'withLocation' WHERE time >= now() - interval '1 hours'"
 
   # Execute the query
   table = client.query(query=query, database=database, language='sql')
