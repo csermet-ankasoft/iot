@@ -31,14 +31,17 @@ while True:
         print("\nArduino Air Quality: ", arduino_airQuality)
         print("Arduino Temperature: ", arduino_temp)
         print("Arduino Humidity: ", arduino_humidity)
-        print("\nRaspberry Air Quality: ", raspberry_airQuality)
+        print("Raspberry Air Quality: ", raspberry_airQuality)
         print("Raspberry Temperature: ", raspberry_temp)
         print("Raspberry Humidity: ", raspberry_humidity)
-        #influxdata.writeData(raspberry_temp, raspberry_humidity, raspberry_airQuality, "Raspberry")    
-
-        lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " A:" + str(raspberry_airQuality) + " O", "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " A:" + str(arduino_airQuality) + " K")
-
         print("\nScan Completed \n")
-        time.sleep(1)
+        lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " A:" + str(raspberry_airQuality) + " O", "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " A:" + str(arduino_airQuality) + " K")
+        time.sleep(45)
+        print("\nWriting to DB...")
+        influxdata.writeData(arduino_temp, arduino_humidity, arduino_airQuality, raspberry_temp, raspberry_humidity, raspberry_airQuality)
+        print("DB Write Completed.\n")
+        lcd.writeLCD("DB Write Completed")
+        time.sleep(15)
     except Exception as error:
+        time.sleep(10)
         lcd.writeLCD("Error", str(error))
