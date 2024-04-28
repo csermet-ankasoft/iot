@@ -40,7 +40,7 @@ while True:
         print("\nWriting to DB...")
         influxdata.writeData(arduino_temp, arduino_humidity, arduino_airQuality, raspberry_temp, raspberry_humidity, raspberry_airQuality)
         print("DB Write Completed.\n")
-        lcd.writeLCD("DB Write Completed")
+        lcd.writeLCD("DB Write Completed", "")
         time.sleep(1)
     except Exception as error:
         time.sleep(10)
