@@ -71,5 +71,5 @@ while True:
         time.sleep(10)
     except Exception as error:
         time.sleep(100)
-        logger.info("Error: ", error)
+        logger.info("Error: "+ str(error))
         lcd.writeLCD("Error", str(error))
