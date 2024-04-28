@@ -44,4 +44,5 @@ while True:
         time.sleep(1)
     except Exception as error:
         time.sleep(10)
+        print("Error: ", error)
         lcd.writeLCD("Error", str(error))
