@@ -7,7 +7,7 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, raspb
   database = influxdbToken.database
 
   data = (
-    Point("iot1")
+    Point("withLocation")
     .tag("location", "Arduino")
     .field("temperature", float(arduino_temp))
     .field("humidity",  float(arduino_humidity))
@@ -25,7 +25,7 @@ def writeWithoutLocationData(arduino_temp, arduino_humidity, arduino_air_quality
   database = influxdbToken.database
 
   data = (
-    Point("iot2")
+    Point("withoutLocation")
     .field("arduino_temp", float(arduino_temp))
     .field("arduino_humidity", float(arduino_humidity))
     .field("arduino_air_quality", int(arduino_air_quality))
