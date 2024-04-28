@@ -41,23 +41,24 @@ log.basicConfig(filename='/home/caner/Project/iot/raspberry/iot.log', level=log.
 logger = log.getLogger('iot')
 Init()
 logger.info("Starting...\n")
+
 while True:
     try:
         logger.info("Scanning...")
         lcd.writeLCD("Scanning", "")
-        raspberry_air_quality = bluetooth.get_airQuality()
+        arduino_air_quality = bluetooth.get_airQuality()
         arduino_temp = bluetooth.get_temperature()
         arduino_humidity = bluetooth.get_humidty()
-        arduino_score = EnvScore(arduino_temp, arduino_humidity, raspberry_air_quality)
+        arduino_score = EnvScore(arduino_temp, arduino_humidity, arduino_air_quality)
         raspberry_air_quality = mq135.getAirQuality()
         raspberry_temp = dht22.get_temperature()
         raspberry_humidity = dht22.get_humidity()
         raspberry_score = EnvScore(raspberry_temp, raspberry_humidity, raspberry_air_quality)
 
-        printScannedData(arduino_temp, arduino_humidity, raspberry_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
+        printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
         time.sleep(36)
         logger.info("Writing to DB...")
-        influxdata.writeData(arduino_temp, arduino_humidity, raspberry_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
+        influxdata.writeData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
         logger.info("DB Write Completed.\n")
         lcd.writeLCD("DB Write Completed", "")
         time.sleep(10)
