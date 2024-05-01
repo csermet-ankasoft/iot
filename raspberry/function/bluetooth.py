@@ -1,4 +1,5 @@
 import serial
+import time
 
 arduinoBluetooth = serial.Serial("/dev/rfcomm1", baudrate=9600, timeout=5)
 
@@ -21,4 +22,6 @@ def status():
 
 def reset():
     arduinoBluetooth.close()
+    time.sleep(1)
+    arduinoBluetooth.open()
     
