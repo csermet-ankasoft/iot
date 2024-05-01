@@ -6,19 +6,50 @@ def writeWithLocation(arduino_temp, arduino_humidity, arduino_air_quality, ardui
   client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
   database = influxdbToken.database
 
+  try:
+    arduino_temp = float(arduino_temp)
+  except ValueError:
+    arduino_temp = 0.0
+
+  try:
+    arduino_humidity = float(arduino_humidity)
+  except ValueError:
+    arduino_humidity = 0.0
+  
+  try:
+    arduino_air_quality = int(arduino_air_quality)
+  except ValueError:
+    arduino_air_quality = 0
+
+  try:
+    raspberry_temp = float(raspberry_temp)
+  except ValueError:
+    raspberry_temp = 0.0
+
+  try:
+    raspberry_humidity = float(raspberry_humidity)
+  except ValueError:
+    raspberry_humidity = 0.0
+
+  try:
+    raspberry_air_quality = int(raspberry_air_quality)
+  except ValueError:
+    raspberry_air_quality = 0    
+
+
   data = (
     Point("withLocation")
     .tag("location", "Arduino")
-    .field("temperature", float(arduino_temp))
-    .field("humidity",  float(arduino_humidity))
-    .field("air_quality", int(arduino_air_quality))
-    .field("score", float(arduino_score)),
+    .field("temperature", arduino_temp)
+    .field("humidity",  arduino_humidity)
+    .field("air_quality", arduino_air_quality)
+    .field("score", arduino_score),
     Point("withLocation")
     .tag("location", "Raspberry")
-    .field("temperature", float(raspberry_temp))
-    .field("humidity", float(raspberry_humidity))
-    .field("air_quality", int(raspberry_air_quality))
-    .field("score", float(raspberry_score))
+    .field("temperature", raspberry_temp)
+    .field("humidity", raspberry_humidity)
+    .field("air_quality", raspberry_air_quality)
+    .field("score", raspberry_score)
   )
   client.write(database=database, record=data)
 
@@ -26,16 +57,47 @@ def writeWithoutLocationData(arduino_temp, arduino_humidity, arduino_air_quality
   client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
   database = influxdbToken.database
 
+
+  try:
+    arduino_temp = float(arduino_temp)
+  except ValueError:
+    arduino_temp = 0.0
+
+  try:
+    arduino_humidity = float(arduino_humidity)
+  except ValueError:
+    arduino_humidity = 0.0
+  
+  try:
+    arduino_air_quality = int(arduino_air_quality)
+  except ValueError:
+    arduino_air_quality = 0
+
+  try:
+    raspberry_temp = float(raspberry_temp)
+  except ValueError:
+    raspberry_temp = 0.0
+
+  try:
+    raspberry_humidity = float(raspberry_humidity)
+  except ValueError:
+    raspberry_humidity = 0.0
+
+  try:
+    raspberry_air_quality = int(raspberry_air_quality)
+  except ValueError:
+    raspberry_air_quality = 0    
+
   data = (
     Point("withoutLocation")
-    .field("arduino_temp", float(arduino_temp))
-    .field("arduino_humidity", float(arduino_humidity))
-    .field("arduino_air_quality", int(arduino_air_quality))
-    .field("arduino_score", float(arduino_score))
-    .field("raspberry_temp", float(raspberry_temp))
-    .field("raspberry_humidity", float(raspberry_humidity))
-    .field("raspberry_air_quality", int(raspberry_air_quality))
-    .field("raspberry_score", float(raspberry_score))
+    .field("arduino_temp", arduino_temp)
+    .field("arduino_humidity", arduino_humidity)
+    .field("arduino_air_quality", arduino_air_quality)
+    .field("arduino_score", arduino_score)
+    .field("raspberry_temp", raspberry_temp)
+    .field("raspberry_humidity", raspberry_humidity)
+    .field("raspberry_air_quality", raspberry_air_quality)
+    .field("raspberry_score", raspberry_score)
   )
   client.write(database=database, record=data)
 
