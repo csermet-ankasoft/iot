@@ -10,18 +10,25 @@ import logging as log
 def Init():
     logger.info("Init Check Started.")
 
-
-    logger.info("Checking Bluetooth...")
-    bluetooth.status()
-    logger.info("Checking LCD...")
-    lcd.status()
-    logger.info("Checking DHT22...")
-    dht22.status()
-    logger.info("Checking MQ135...")
-    mq135.status()
-    logger.info("Checking InfluxDB...")
-    influxdata.status()
-
+    while True:
+        try:
+            logger.info("Checking Bluetooth...")
+            bluetooth.status()
+            logger.info("Checking LCD...")
+            lcd.status()
+            logger.info("Checking DHT22...")
+            dht22.status()
+            logger.info("Checking MQ135...")
+            mq135.status()
+            logger.info("Checking InfluxDB...")
+            influxdata.status()
+            break
+        except Exception as error:
+            lcd.writeLCD("Error", str(error))
+            logger.error("Error: " + str(error))
+            logger.error("Check Failed.\n")
+            time.sleep(20)
+            continue
 
     logger.info("Check Completed.\n")
     time.sleep(2)
@@ -73,4 +80,4 @@ while True:
     except Exception as error:
         logger.info("Error: " + str(error))
         lcd.writeLCD("Error", str(error))
-        time.sleep(100)
+        time.sleep(45)
