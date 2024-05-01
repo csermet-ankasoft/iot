@@ -11,10 +11,15 @@ def Init():
     logger.info("Init Check Started.")
 
     try:
+        logger.info("Checking Bluetooth...")
         bluetooth.status()
+        logger.info("Checking LCD...")
         lcd.status()
+        logger.info("Checking DHT22...")
         dht22.status()
+        logger.info("Checking MQ135...")
         mq135.status()
+        logger.info("Checking InfluxDB...")
         influxdata.status()
     except Exception as error:
         logger.error("Init Check Failed: " + str(error))
