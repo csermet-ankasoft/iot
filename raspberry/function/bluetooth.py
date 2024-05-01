@@ -20,5 +20,5 @@ def status():
     __get_bluetooth(b'status')
 
 def reset():
-    arduinoBluetooth.open()
+    arduinoBluetooth.close()
     
