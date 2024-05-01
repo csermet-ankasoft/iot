@@ -10,11 +10,17 @@ import logging as log
 def Init():
     logger.info("Init Check Started.")
 
-    bluetooth.status()
-    lcd.status()
-    dht22.status()
-    mq135.status()
-    influxdata.status()
+    try:
+        bluetooth.status()
+        lcd.status()
+        dht22.status()
+        mq135.status()
+        influxdata.status()
+    except Exception as error:
+        logger.error("Init Check Failed: " + str(error))
+        lcd.writeLCD("Init Failed", str(error))
+        time.sleep(100)
+        exit(1)
 
     logger.info("Check Completed.\n")
     time.sleep(2)

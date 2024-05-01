@@ -6,3 +6,6 @@ User=pi
 ExecStart=/usr/bin/python3 /home/caner/Project/iot/raspberry/main.py
 Restart=always
 RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
