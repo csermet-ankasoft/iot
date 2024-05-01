@@ -27,7 +27,8 @@ def Init():
             lcd.writeLCD("Error", str(error))
             logger.error("Error: " + str(error))
             logger.error("Check Failed.\n")
-            time.sleep(20)
+            bluetooth.reset()
+            time.sleep(10)
             continue
 
     logger.info("Check Completed.\n")
@@ -80,4 +81,5 @@ while True:
     except Exception as error:
         logger.info("Error: " + str(error))
         lcd.writeLCD("Error", str(error))
+        bluetooth.reset()
         time.sleep(45)
