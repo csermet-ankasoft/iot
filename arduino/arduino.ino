@@ -22,6 +22,7 @@ void setup()
 {
   Serial.begin(9600);
   dht.begin();
+  dht.readHumidity()
   BTserial.begin(9600);
   Serial.println("Ready");    
 }
@@ -44,7 +45,7 @@ void loop()
     if (readString == "status"){
       hum = dht.readHumidity();
       temp = dht.readTemperature();
-      airQuality = (analogRead(AOUTpin) * 1.25); 
+      airQuality = (analogRead(AOUTpin) * 1.25);
 
       BTserial.print("Humidity: ");
       BTserial.print(hum);
