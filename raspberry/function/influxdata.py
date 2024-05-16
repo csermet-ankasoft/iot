@@ -118,3 +118,17 @@ def status():
 
   # Convert to dataframe
   table.to_pandas().sort_values(by="time")
+
+def getLast10Row():
+  client = InfluxDBClient3(host=influxdbToken.host, token=influxdbToken.token , org=influxdbToken.org)
+  database = influxdbToken.database
+
+  query = 'SELECT time, arduino_temp, raspberry_temp, arduino_humidity, raspberry_humidity FROM "withoutLocation" WHERE ("arduino_air_quality" IS NOT NULL AND "arduino_humidity" IS NOT NULL AND "arduino_score" IS NOT NULL AND "raspberry_air_quality" IS NOT NULL AND "arduino_temp" IS NOT NULL AND "raspberry_humidity" IS NOT NULL AND "raspberry_score" IS NOT NULL AND "raspberry_temp" IS NOT NULL) ORDER BY time DESC  LIMIT 10'
+
+  # Execute the query
+  table = client.query(query=query, database=database, language='sql')
+
+  # Convert to dataframe
+  dataframe = table.to_pandas().sort_values(by="time")
+  
+  return dataframe
