@@ -34,8 +34,8 @@ while True:
         logger.info("Sleeping for 30 seconds.")
         
         predict = functions.Predict()
-        lcd.writeLCD("PTemp:" + str(round(predict[0][0], 3)) + "  PHum:" + str(round(predict[0][2], 2)), "PTemp:" + str(round(predict[0][1], 3)) + "  PHum:" + str(round(predict[0][3], 2)))
-        logger.info("PTemp:" + str(round(predict[0][0], 3)) + "  PHum:" + str(round(predict[0][2], 2)) + "PTemp:" + str(round(predict[0][1], 3)) + "  PHum:" + str(round(predict[0][3], 2)))
+        lcd.writeLCD("PT:" + str(round(predict[0][0], 3)) + "  PH:" + str(round(predict[0][2], 3)), "PTemp:" + str(round(predict[0][1], 3)) + "  PHum:" + str(round(predict[0][3], 3)))
+        logger.info("PT:" + str(round(predict[0][0], 3)) + "  PH:" + str(round(predict[0][2], 3)) + "PTemp:" + str(round(predict[0][1], 3)) + "  PHum:" + str(round(predict[0][3], 3)))
         time.sleep(10)
         
         logger.info("Writing to DB...")
