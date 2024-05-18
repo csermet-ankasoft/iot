@@ -1,3 +1,4 @@
+
 //Libraries
 #include <SoftwareSerial.h>
 #include <DHT.h>
@@ -13,17 +14,36 @@
 float hum;  //Stores humidity value
 float temp; //Stores temperature value
 int airQuality;
+int FanLOW = 8;
+int FanHIGH = 9;
+int ConA = 10;// PWM DI/DO
+int fanSpeed = 100;
 
 //Define
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
 SoftwareSerial BTserial(TX, RX); 
 
+void runFan(int speed)
+{
+  digitalWrite(FanLOW, LOW); 
+  digitalWrite(FanHIGH, HIGH);
+  analogWrite(ConA, speed);
+}
+
 void setup() 
 {
   Serial.begin(9600);
+
+  //FAN
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);  
+  pinMode(10, OUTPUT);
+
+  //Sensors
   dht.begin();
-  dht.readHumidity()
+  dht.readHumidity();
   BTserial.begin(9600);
+
   Serial.println("Ready");    
 }
 
@@ -75,6 +95,12 @@ void loop()
       BTserial.print(airQuality);
       BTserial.print(";");
     }
+    else if(readString.startsWith("fan"))
+    {
+      fanSpeed = readString.substring(3,7).toInt();
+    }
     readString = "";
   }
+
+  runFan(fanSpeed);
 }
