@@ -43,13 +43,16 @@ while True:
 
         raspberry_predict_score = functions.EnvScore(raspberry_predict_temp, raspberry_predict_humidity, raspberry_air_quality)
         arduino_predict_score = functions.EnvScore(arduino_predict_temp, arduino_predict_humidity, arduino_air_quality)
-        diff_score = arduino_score - raspberry_score
+        current_diff_score = arduino_score - raspberry_score
         predict_diff_score = arduino_predict_score - raspberry_predict_score
-        fan_speed = functions.CalculateFanSpeed(predict_diff_score, diff_score)
+
+        diff_score = max(current_diff_score, predict_diff_score)
+
+        fan_speed = functions.CalculateFanSpeed(diff_score)
         bluetooth.set_fanSpeed(fan_speed)
 
-        lcd.writeLCD("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) , "PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(predict_diff_score))
-        logger.info("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) + "  PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(predict_diff_score))
+        lcd.writeLCD("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) , "PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(diff_score))
+        logger.info("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) + "  PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(diff_score))
         time.sleep(10)
         
         logger.info("Writing to DB...")
