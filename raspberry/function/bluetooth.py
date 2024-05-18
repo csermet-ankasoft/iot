@@ -17,6 +17,9 @@ def get_temperature():
 def get_airQuality():
     return __get_bluetooth(b'getAirQuality')
 
+def set_fanSpeed(speed):
+    __get_bluetooth(b'fan ' + str(speed).encode())
+
 def status():
     __get_bluetooth(b'status')
 

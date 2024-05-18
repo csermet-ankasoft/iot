@@ -33,9 +33,22 @@ while True:
         time.sleep(25)
         logger.info("Sleeping for 30 seconds.")
         
+        
         predict = functions.Predict()
-        lcd.writeLCD("PT:" + str(round(predict[0][0], 3)) + "  PH:" + str(round(predict[0][2], 3)), "PT:" + str(round(predict[0][1], 3)) + "  PH:" + str(round(predict[0][3], 3)))
-        logger.info("PT:" + str(round(predict[0][0], 3)) + "  PH:" + str(round(predict[0][2], 3)) + "\nPT:" + str(round(predict[0][1], 3)) + "  PH:" + str(round(predict[0][3], 3)))
+
+        raspberry_predict_temp = predict[0][0]
+        raspberry_predict_humidity = predict[0][2]
+        arduino_predict_temp = predict[0][1]
+        arduino_predict_humidity = predict[0][3]
+
+        raspberry_predict_score = functions.EnvScore(raspberry_predict_temp, raspberry_predict_humidity, raspberry_air_quality)
+        arduino_predict_score = functions.EnvScore(arduino_predict_temp, arduino_predict_humidity, arduino_air_quality)
+        predict_diff_score = arduino_predict_score - raspberry_predict_score
+        fan_speed = functions.CalculateFanSpeed(predict_diff_score)
+        bluetooth.set_fanSpeed(255)
+
+        lcd.writeLCD("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + fan_speed , "PT:" + str(arduino_predict_temp, 1) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(predict_diff_score))
+        logger.info("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + fan_speed + "  PT:" + str(arduino_predict_temp, 1) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(predict_diff_score))
         time.sleep(15)
         
         logger.info("Writing to DB...")

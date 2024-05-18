@@ -44,6 +44,23 @@ def EnvScore(temp, humidity, air_quality):
     airQualityScore = bestEnv.airQuality(air_quality)
     return (tempScore + humidityScore + airQualityScore) / 3
 
+def CalculateFanSpeed(score):
+    if score > 0 and score <= 0.5:
+        return 140
+    elif score > 0.5 and score <= 1:
+        return 170
+    elif score > 1 and score <= 1.5:
+        return 200
+    elif score > 1.5 and score <= 2:
+        return 220
+    elif score > 2 and score <= 2.5:
+        return 240
+    elif score > 2.5:
+        return 255
+    else:
+        return 100
+
+
 def printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score):
     logger.info("Arduino Air Quality: " + str(arduino_air_quality))
     logger.info("Arduino Temperature: " + str(arduino_temp))
