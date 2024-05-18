@@ -35,7 +35,7 @@ def Init():
             time.sleep(5)
             continue
 
-    logger.info("Check Completed.\n")
+    logger.info("Check Completed.")
     time.sleep(2)
 
 def EnvScore(temp, humidity, air_quality):
