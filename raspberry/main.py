@@ -30,8 +30,8 @@ while True:
         raspberry_score = functions.EnvScore(raspberry_temp, raspberry_humidity, raspberry_air_quality)
         functions.printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduino_score, raspberry_temp, raspberry_humidity, raspberry_air_quality, raspberry_score)
 
-        time.sleep(25)
-        logger.info("Sleeping for 30 seconds.")
+        time.sleep(20)
+        logger.info("Sleeping for 20 seconds.")
         
         
         predict = functions.Predict()
@@ -49,7 +49,7 @@ while True:
 
         lcd.writeLCD("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) , "PT:" + str(arduino_predict_temp, 1) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(predict_diff_score))
         logger.info("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) + "  PT:" + str(arduino_predict_temp, 1) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(predict_diff_score))
-        time.sleep(15)
+        time.sleep(10)
         
         logger.info("Writing to DB...")
         lcd.writeLCD("Writing to DB", "")
