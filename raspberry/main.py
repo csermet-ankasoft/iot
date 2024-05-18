@@ -7,10 +7,8 @@ import function.lcd as lcd
 import function.functions as functions
 import logging as log
 
-
 log.basicConfig(filename='/home/caner/Project/iot/raspberry/iot.log', level=log.INFO, format='%(asctime)s %(levelname)-8s %(message)s',datefmt='%Y-%m-%d %H:%M:%S')
 logger = log.getLogger('iot')
-logger.info("Prediction AI Model Loaded.")
 
 functions.Init()
 logger.info("Starting...\n")
