@@ -47,6 +47,8 @@ while True:
         predict_diff_score = arduino_predict_score - raspberry_predict_score
 
         diff_score = max(current_diff_score, predict_diff_score)
+        logger.info("Current Diff Score: " + str(current_diff_score) + " Predict Diff Score: " + str(predict_diff_score))
+        logger.info("Diff Score: " + str(diff_score))
 
         fan_speed = functions.CalculateFanSpeed(diff_score)
         bluetooth.set_fanSpeed(fan_speed)

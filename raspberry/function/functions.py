@@ -42,7 +42,7 @@ def EnvScore(temp, humidity, air_quality):
     tempScore = bestEnv.temp(temp)
     humidityScore = bestEnv.humidity(humidity)
     airQualityScore = bestEnv.airQuality(air_quality)
-    return (tempScore + humidityScore + airQualityScore) / 3
+    return round((tempScore + humidityScore + airQualityScore) / 3, 1)
 
 def CalculateFanSpeed(score):
     if (score > 0 and score <= 0.5) :
@@ -71,7 +71,7 @@ def printScannedData(arduino_temp, arduino_humidity, arduino_air_quality, arduin
     logger.info("Raspberry Humidity: " + str(raspberry_humidity))
     logger.info("Raspberry Score: " + str(raspberry_score))
     logger.info("Scan Completed")
-    lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " S:" + str("{:.1f}".format(raspberry_score)) + " O", "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " S:" + str("{:.1f}".format(arduino_score)) + " K")
+    lcd.writeLCD("T:" + str(raspberry_temp) + " H:" + str(raspberry_humidity) + " S:" + str(raspberry_score), "T:" + str(arduino_temp) + " H:" + str(arduino_humidity) + " S:" + str(arduino_score))
 
 def Predict():
     logger.info("Prediction Started.")
