@@ -42,7 +42,7 @@ def EnvScore(temp, humidity, air_quality):
     tempScore = bestEnv.temp(temp)
     humidityScore = bestEnv.humidity(humidity)
     airQualityScore = bestEnv.airQuality(air_quality)
-    return round((tempScore + humidityScore + airQualityScore) / 3, 1)
+    return round(((tempScore + humidityScore + airQualityScore) / 3), 1)
 
 def CalculateFanSpeed(score):
     if (score > 0 and score <= 0.5) :

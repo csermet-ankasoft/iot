@@ -10,8 +10,8 @@ import logging as log
 
 log.basicConfig(filename='/home/caner/Project/iot/raspberry/iot.log', level=log.INFO, format='%(asctime)s %(levelname)-8s %(message)s',datefmt='%Y-%m-%d %H:%M:%S')
 logger = log.getLogger('iot')
-
 logger.info("Prediction AI Model Loaded.")
+
 functions.Init()
 logger.info("Starting...\n")
 
@@ -48,12 +48,11 @@ while True:
 
         diff_score = max(current_diff_score, predict_diff_score)
         logger.info("Current Diff Score: " + str(current_diff_score) + " Predict Diff Score: " + str(predict_diff_score))
-        logger.info("Diff Score: " + str(diff_score))
 
         fan_speed = functions.CalculateFanSpeed(diff_score)
         bluetooth.set_fanSpeed(fan_speed)
 
-        lcd.writeLCD("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) , "PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(diff_score))
+        lcd.writeLCD("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) , "PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(round(diff_score, 1)))
         logger.info("PT:" + str(round(raspberry_predict_temp, 1)) + " PH:" + str(round(raspberry_predict_humidity)) + " F:" + str(fan_speed) + "  PT:" + str(round(arduino_predict_temp, 1)) + " PH:" + str(round(arduino_predict_humidity)) + " S:" + str(diff_score))
         time.sleep(10)
         
